@@ -11,6 +11,8 @@ let compScore = 0;
 function findWinner(userChoice ) {
     let computerChoice = getComputerChoice();
     if(userChoice === computerChoice) {
+        msg.innerText="It's a tie!";
+        msg.style.backgroundColor = "Orange";
         return "It's a tie!";
     }
     else if(userChoice === "rock") {
@@ -27,18 +29,28 @@ function findWinner(userChoice ) {
     }
     console.log( `${userScore} : ${compScore} : ${userWin}`);
     if(userWin) {
-        msg.innerText="you won!"; 
-    }   else {
+        msg.innerText="you won!";
+        msg.style.backgroundColor = "Green";
+    }   else{
     msg.innerText="you lost!. Try again!";
+    msg.style.backgroundColor = "Red";
     }
+
 
     userRing.innerText = userScore;
     compRing.innerText = compScore;
 
     if(userScore === 5 || compScore === 5) {
-        msg.innerText="game over!";
         userScore = 0;
         compScore =0;
+        msg.innerText="game over!";
+
+        userRing.style.fontSize = "5vw";
+        compRing.style.fontSize = "5vw";
+        document.querySelectorAll(".score").style.fontWeight = "900";
+        arrComputerChoice.forEach(ch=> {
+            ch.disabled = true;
+        })
 }
 }
 
